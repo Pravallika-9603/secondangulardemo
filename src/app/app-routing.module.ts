@@ -9,6 +9,8 @@ const routes: Routes = [
 {
   path:'forgotpassord',
   component:ForgotpassordComponent
+
+  
   
 },
 {
