@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { register } from 'module';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'secondangulardemo';
+  
+submit(){
+  console.log("from regiter")
+
+}
+login(){
+  console.log("from login")
+}
+forget(){
+  console.log("from forgot")
+}
 }
