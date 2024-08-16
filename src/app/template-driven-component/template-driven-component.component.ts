@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { UserregisterService } from '../userregister.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-template-driven-component',
@@ -7,8 +8,15 @@ import { UserregisterService } from '../userregister.service';
   styleUrl: './template-driven-component.component.css'
 })
 export class TemplateDrivenComponentComponent {
- 
+
+ @Output()
+ userNameEmitter : EventEmitter<string>=new EventEmitter();
+  subject=new Subject<String>();
+
   constructor(private UserRegisterService:UserregisterService){
+    this.subject.subscribe(data=>{
+      console.log("from subject subscriber "+data)
+  })
 
   }
 
@@ -23,6 +31,10 @@ export class TemplateDrivenComponentComponent {
     gender:''
   };
   submitForm(form:any):void{
+    this.subject.next("subject in angular"+this.userDetails.name);
+
+     this.userNameEmitter.emit(this.userDetails.name);
+
     var response= this.UserRegisterService.saveUser(this.userDetails)
     response.subscribe(response=>{
       console.log("From Subscriber of observable"+JSON.stringify(response))

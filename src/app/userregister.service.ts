@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class UserregisterService {
 
+  userNameBehaviour=new BehaviorSubject<string>('Ashri');
+
+  emitName(name:any):void{
+    this.userNameBehaviour.next(name);
+  }
+
   constructor(private http:HttpClient){
 
+  }
+
+  learnObservable(userDetails: { name: string; email: string; address: string; mobile: string; age: null; gender: string; }): Observable<String>{
+    return new Observable<String>(Observer=>{
+      console.log("Executed");
+      setTimeout(()=>Observer.next('Neoteric'),6000);
+    }
+    );
   }
   
   saveUser(user:any):Observable<object> { 

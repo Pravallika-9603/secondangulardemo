@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './forgotpassord.component.css'
 })
 export class ForgotpassordComponent {
+
+  userDetails={
+    name:'',
+    email:'',
+    address:'',
+    mobile:'',
+    age:null,
+    gender:''
+  };
+  
 }
