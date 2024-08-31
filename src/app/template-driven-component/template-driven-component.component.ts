@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output, output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserregisterService } from '../userregister.service';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-template-driven-component',
@@ -8,41 +9,60 @@ import { Subject } from 'rxjs';
   styleUrl: './template-driven-component.component.css'
 })
 export class TemplateDrivenComponentComponent {
+        name:string = 'Angular Demo';
 
- @Output()
- userNameEmitter : EventEmitter<string>=new EventEmitter();
-  subject=new Subject<String>();
+        subject = new Subject<string>();
 
-  constructor(private UserRegisterService:UserregisterService){
-    this.subject.subscribe(data=>{
-      console.log("from subject subscriber "+data)
-  })
+        @Output()
+        userNameEmitter : EventEmitter<string>=new EventEmitter();
 
-  }
+        
+        constructor(private userRegisterService:UserregisterService){
+
+          this.subject.subscribe(data => {
+            console.log(" from subscribe data value"+data);
+          })
+
+        }
+        password:string='';
+        userDetails={
+          name:'',
+          email:'',
+          address:'',
+          mobile:'',
+          age:null,
+          gender:'',
+        };
 
 
+        register(form:any): void{
 
-  userDetails={
-    name:'',
-    email:'',
-    address:'',
-    mobile:'',
-    age:null,
-    gender:''
-  };
-  submitForm(form:any):void{
-    this.subject.next("subject in angular"+this.userDetails.name);
+          this.subject.next("testing subject in angular"+this.userDetails.name);
 
-     this.userNameEmitter.emit(this.userDetails.name);
+          this.subject.next("22222222222222");
 
-    var response= this.UserRegisterService.saveUser(this.userDetails)
+          this.userNameEmitter.emit(this.userDetails.name);
+  
+        this.userRegisterService.learnObservable().subscribe(
+          data=>{
+            console.log("from learn observable subscribe");
+          }
+        );
+       
+
+   var response=this.userRegisterService.registerUser(this.userDetails);
+
     response.subscribe(response=>{
-      console.log("From Subscriber of observable"+JSON.stringify(response))
+      console.log("....from subscribe of observable" +JSON.stringify(response));
 
-    },error  => {
-      console.log(" saved error "+JSON.stringify(error));
-    });
-    console.log("registration is inprogress"+JSON.stringify(this.userDetails));
-  }
-  }
+    }, error=>{
+       console.log("registration is inprogress")
+    }
 
+    );
+          console.log("succesfull register"+JSON.stringify(this.userDetails)+"response"+response);
+        }
+
+
+        
+}

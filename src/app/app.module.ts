@@ -6,22 +6,23 @@ import { AppComponent } from './app.component';
 import { TemplateDrivenComponentComponent } from './template-driven-component/template-driven-component.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient,provideHttpClient,withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { ForgotpassordComponent } from './forgotpassord/forgotpassord.component';
 import { MaskDirective } from './mask.directive';
 import { AddressComponent } from './address/address.component';
 import { UserComponent } from './user/user.component';
 import { RestaurentComponent } from './restaurent/restaurent.component';
 import { RatingComponent } from './rating/rating.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 @NgModule({ 
   declarations: [
     AppComponent,
     TemplateDrivenComponentComponent,
-    ForgotpassordComponent,
+    ForgotpasswordComponent,
     MaskDirective,
     AddressComponent,
     UserComponent,
     RestaurentComponent,
     RatingComponent,
+    ForgotpasswordComponent,
   ],
   imports: [
     BrowserModule,

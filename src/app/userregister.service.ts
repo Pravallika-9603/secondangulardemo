@@ -1,41 +1,55 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserregisterService {
 
-  userNameBehaviour=new BehaviorSubject<string>('Ashri');
+   userNameBehaviourSubject =  new BehaviorSubject<string>('Neoteric');
+  userNameBehaviour: any;
 
-  emitName(name:any):void{
-    this.userNameBehaviour.next(name);
+
+   emitName(name:any):void{
+     this.userNameBehaviourSubject.next(name);
+   }
+
+  constructor(private http:HttpClient) {
+    console.log(" from constructor in UserRegisterService");
+    
+   }
+
+
+  learnObservable(): Observable<string>{
+
+    return new Observable<string>(observer =>{
+
+       console.log('Observer entered');
+
+       setTimeout(()=>observer.next('from customer Observable '),6000);
+
+
+    });
   }
 
-  constructor(private http:HttpClient){
+  registerUser(user:any):Observable<Object>{
+    console.log('in service '+JSON.stringify(user));
 
-  }
-
-  learnObservable(userDetails: { name: string; email: string; address: string; mobile: string; age: null; gender: string; }): Observable<String>{
-    return new Observable<String>(Observer=>{
-      console.log("Executed");
-      setTimeout(()=>Observer.next('Neoteric'),6000);
-    }
-    );
-  }
-  
-  saveUser(user:any):Observable<object> { 
-
-    const httpOption={
-      headers:new HttpHeaders({
-
-         'Content-Type':  'application/json',
-        'Accept': 'application/json'
-      })
-    }
-
-    console.log('service'+JSON.stringify(user));
-    return this.http.post("http://localhost:8080/api/saveUser",user,httpOption);
-     
+    //method
+    //path
+    // protocal
+    //Headers
+    // Body
+   const httpHeaders = {
+    headers:new HttpHeaders({
+      'companyname':'Neoteric',
+      'Content-Type':'application/json',
+      'Accept':'application/json'
+    })
+   }
+   return this.http.post('http://localhost:8080/api/registerUser',user,httpHeaders);
+ 
   }
 }

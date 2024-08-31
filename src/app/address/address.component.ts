@@ -6,14 +6,16 @@ import { Component } from '@angular/core';
   styleUrl: './address.component.css'
 })
 export class AddressComponent {
+  address ={
+      add1:'',
+      add2:'',
+      pincode:'',
+      state:'',
+      city:''
+  }
 
-  address={
+  saveAddress():void{
 
-    add1:'',
-    add2:'',
-    pincode:'',
-    state:'',
-    city:''
     
   }
 }

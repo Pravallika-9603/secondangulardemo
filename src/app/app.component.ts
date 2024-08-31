@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { register } from 'module';
 import { Router } from '@angular/router';
 import { UserregisterService } from './userregister.service';
+
 
 
 @Component({
@@ -10,33 +10,35 @@ import { UserregisterService } from './userregister.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
-  fullNameFromChild:String=' ';
-  
-  title = 'secondangulardemo';
-  
-  constructor(private router:Router,private userregisterService:UserregisterService){
-
-  
-    this.userregisterService.userNameBehaviour.subscribe(
-      data=>{
-        this.fullNameFromChild=data;
-        console.log("from appcomponenet bsubs")
-      }
-    )
+  title = 'firstangulardemo';
+  fullNameFromChild:string='';
+  constructor(private router:Router,
+    private userregisterService:UserregisterService
+  ){
+  this.userregisterService.userNameBehaviourSubject.subscribe(
+    data =>{
+      this.fullNameFromChild=data;
+      console.log( " from App component Service");
+    }
+  )
   }
-submit(){
-  console.log("from regiter")
-  
+  register(){
+    console.log(' from register');
 
-}
-login(){
-  console.log("from login")
- 
- 
-}
-forget(){
-  console.log("from forgot")
-  this.router.navigate(['/login'])
-}
+    this.router.navigate(['register']);
+
+  }
+
+  forgotPassword(){
+    console.log(' from forgotPassword');
+
+    this.router.navigate(['forgotPassword']);
+
+  }
+
+  login(){
+    console.log(' from login')
+  }
+
+
 }

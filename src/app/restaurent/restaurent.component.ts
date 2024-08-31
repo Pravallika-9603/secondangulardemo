@@ -11,6 +11,6 @@ import { Rating } from '../model/Rating';
 export class RestaurentComponent {
   restaurent=new Restaurent('',new Address('','','','',''),new Rating(0,''));
   addRestaurent():void{
-    console.log("a")
+    console.log("from restaurent.ts")
   }
 }
