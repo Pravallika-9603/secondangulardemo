@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Address } from '../model/Address';
 
 @Component({
   selector: 'app-address',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './address.component.css'
 })
 export class AddressComponent {
+
+
   address ={
       add1:'',
       add2:'',
@@ -15,7 +18,6 @@ export class AddressComponent {
   }
 
   saveAddress():void{
-
     
   }
 }

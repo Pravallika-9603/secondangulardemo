@@ -12,6 +12,17 @@ import { UserComponent } from './user/user.component';
 import { RestaurentComponent } from './restaurent/restaurent.component';
 import { RatingComponent } from './rating/rating.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
+import { CreateAtmComponent } from './create-atm/create-atm.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { LoansearchComponent } from './loansearch/loansearch.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -23,15 +34,25 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     RestaurentComponent,
     RatingComponent,
     ForgotpasswordComponent,
+    CreateaccountComponent,
+    CreateAtmComponent,
+    WithdrawComponent,
+    LoansearchComponent,
   ],
   imports: [
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
